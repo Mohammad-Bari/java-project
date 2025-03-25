@@ -42,7 +42,8 @@
                 </div>                  
                 <header class="w3-container w3-theme" style="padding:64px 32px">
                     <h1 class="w3-xxxlarge">Welcome to my W3.CSS website</h1>
-                    <h1 class="w3-xxxlarge">You will be learning modern CSS, HTML , javascript here</h1>
+                    <h3 class="w3-xxxlarge">You will be learning modern CSS, HTML , javascript here</h3>
+                    <p>Learning is a continuous journey of acquiring knowledge, skills, and experiences that shape our growth and understanding of the world.</p>  
                 </header>                  
                 <div class="w3-container" style="padding:32px">                  
                     <h2>What is W3.CSS?</h2>                  
