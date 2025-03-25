@@ -1,0 +1,33 @@
+name: CICD using maven and SL lab 
+on: 
+ push: 
+   branches: ["main"]
+ workflow_dispatch: 
+jobs: 
+  buildandDeploy:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Clone the Repo 
+      uses: actions/checkout@v4 
+    - name: Setup JDK 11 and maven 
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+        cache: 'maven'
+    - name: Build with Maven 
+      run: mvn -B package --file pom.xml 
+    - name: connect to LAb and deploy code on tomcat9
+      uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+      with:
+       host: '13.233.135.136'
+       user: 'labuser'
+       pass: 'Nuvelabs123$'
+       port: 22
+       connect_timeout: 10s
+       first_ssh: |
+          sudo chmod 777 /var/lib/tomcat9/webapps
+       scp: |
+          './target/*war' => /var/lib/tomcat9/webapps
+       last_ssh: |
+          sudo systemctl restart tomcat9
